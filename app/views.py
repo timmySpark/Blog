@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from app.forms import *
 from app.models import *
 
 # Create your views here.
@@ -32,3 +33,20 @@ def Index(request):
 def BlogHome(request):
     template_name = 'blog.html'
     return render(request, template_name)
+
+
+def PostDetail(request,slug):
+    template_name = 'article.html'
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    post = get_object_or_404(Blog,slug=slug)
+    context = {
+        'post':post,
+         'form':form
+    }
+    return render(request, template_name,context)    
+

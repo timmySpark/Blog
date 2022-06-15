@@ -8,15 +8,15 @@
         <!-- BEGIN CONTENT -->
     <main class="content">
         <div class="section-welcome">
-            <div class="welcome_slider js-welcome_slider">
+            <div class="welcome_slider js-welcome_slider" data-slick='{"autoplay": true, "autoplaySpeed": 2000}'>
                 {% for f in featured_post  %}
-                  <div class="welcome_slider_item slick-slide"><a href="article.html" class="cover_link"></a>
+                  <div class="welcome_slider_item slick-slide"><a href="{% url 'post-details' f.slug %}" class="cover_link"></a>
                     <div class="welcome_slider_img"><img src=" {{f.image.url}} " class="js-img" alt="no-img-found"/></div>
                     <div class="welcome_slider_cont">
                         <div class="welcome_slider_cats cats">
                             <a href="blog.html" class="cats_item">{{f.category}}</a>
                         </div>
-                        <div class="welcome_slider_title h3"><a href="article.html">{{f.title}}</a></div>
+                        <div class="welcome_slider_title h3"><a href="{% url 'post-details' f.slug %}">{{f.title}}</a></div>
                         <div class="welcome_slider_infoline infoline">
                             <div class="infoline_date">{{f.created_at}}</div> <span class="dash"></span>
                             <div class="infoline_author">

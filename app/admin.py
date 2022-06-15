@@ -13,3 +13,5 @@ admin.site.register(Blog,BlogAdmin)
 class CategoryAdmin(ImportExportMixin,admin.ModelAdmin):
     list_display = ['name']
 admin.site.register(Category,CategoryAdmin)
+
+admin.site.register(Comment)

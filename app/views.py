@@ -1,6 +1,6 @@
-from django.shortcuts import render,get_object_or_404
-from app.forms import *
+from django.shortcuts import redirect, render,get_object_or_404
 from app.models import *
+from app.forms import *
 
 # Create your views here.
 
@@ -37,16 +37,21 @@ def BlogHome(request):
 
 def PostDetail(request,slug):
     template_name = 'article.html'
+    post = get_object_or_404(Blog,slug=slug)
     form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST or None)
         if form.is_valid():
-            form.save()
+            c = form.save(commit=False)
+            c.post = post
+            c.save()
             return redirect('/')
-    post = get_object_or_404(Blog,slug=slug)
+
+    postComment = Comment.objects.filter(post=post)
     context = {
         'post':post,
-         'form':form
+        'form':form,
+        'postComment':postComment
     }
     return render(request, template_name,context)    
 

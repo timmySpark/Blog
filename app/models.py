@@ -58,6 +58,7 @@ class Blog(models.Model):
 
 
 class Comment(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
@@ -69,7 +70,7 @@ class Comment(models.Model):
         verbose_name_plural = ("Comments")
 
     def __str__(self):
-        return f"{self.full_name} --- {self.email}"
+        return f"{self.full_name}  ---  {self.email}"
 
     def get_absolute_url(self):
         return reverse("Comment_detail", kwargs={"pk": self.pk})

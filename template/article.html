@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% load widget_tweaks %} {% block content %}
 
 <!-- BEGIN CONTENT -->
 <main class="content">
@@ -61,51 +62,37 @@
           </article>
           <div class="comments_form">
             <h3>Leave a comment</h3>
-            <form id="form">
+            <form id="form" method="POST">{% csrf_token %}
               <div class="form_cols">
                 <div class="form_cols_item">
                   <div class="form_row">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Your name"
-                      name="name"
-                    />
+                    {{form.full_name|add_class:"form-control"|attr:"placeholder:Full name"|attr:"type:text"}}
                   </div>
                 </div>
                 <div class="form_cols_item">
                   <div class="form_row">
-                    <input
-                      type="tel"
-                      class="form-control"
-                      placeholder="+1 (___) ___ __ __"
-                      name="tel"
-                    />
+                    {{form.phone_number|add_class:"form-control"|attr:"placeholder: +1 (___) ___ __ __"|attr:"type:tel"}}
                   </div>
                 </div>
                 <div class="form_cols_item">
                   <div class="form_row">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Your email"
-                      name="email"
-                    />
+                    {{form.email|add_class:"form-control"|attr:"placeholder : Your email"|attr:"type:email"}}
                   </div>
                 </div>
               </div>
               <div class="form_row">
-                <textarea
-                  class="form-control"
-                  placeholder="Enter your comment"
-                  name="comment"
-                ></textarea>
+                {{form.comment|add_class:"form-control"|attr:"placeholder : Enter your comment"|attr:"type:text"}}
               </div>
               <div class="form_btn">
-                <button class="btn">post comment</button>
+                <button type="submit" class="btn">post comment</button>
               </div>
             </form>
           </div>
+          {% for c in postComment  %}
+          {{c.comment}} <br>
+          {{c.full_name}} <br>
+          {{c.created_at}} <br>
+          {% endfor %}
           <a href="#" class="bann"
             ><img
               data-src="img/bad1.jpg"

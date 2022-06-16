@@ -11,27 +11,12 @@
           >
           <div class="header_categ_drop">
             <ul class="catlist">
+              {% for cat in  category %}
               <li>
-                <a href="blog.html">Home&garden <span>(15)</span></a>
+                <a href="{% url 'Blog' %}">{{cat.name}} <span>(15)</span></a>
               </li>
-              <li>
-                <a href="blog.html">Travel <span>(23)</span></a>
-              </li>
-              <li>
-                <a href="blog.html">Electronics <span>(34)</span></a>
-              </li>
-              <li>
-                <a href="blog.html">Office <span>(5)</span></a>
-              </li>
-              <li>
-                <a href="blog.html">cars <span>(51)</span></a>
-              </li>
-              <li>
-                <a href="blog.html">pets <span>(8)</span></a>
-              </li>
-              <li>
-                <a href="blog.html">fashion <span>(29)</span></a>
-              </li>
+              {% endfor %}
+              
             </ul>
           </div>
         </div>
@@ -41,7 +26,7 @@
       </div>
     </div>
     <div class="header_mid">
-      <a href="index.html" class="header_logo logo" title=""
+      <a href="{% url 'Blog' %}" class="header_logo logo" title=""
         ><img
           data-src="{% static 'img/logo.png' %}"
           src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
@@ -54,7 +39,7 @@
         <li><a href="#mostreaded" class="js-local">Most read</a></li>
         <li><a href="#hot" class="js-local">Hot stuff</a></li>
         <li><a href="#top" class="js-local">top of the week</a></li>
-        <li><a href="blog.html" class="">Must read</a></li>
+        <li><a href="{% url 'Blog' %}" class="">Must read</a></li>
       </ul>
       <a href="#" class="button-nav"><span></span></a>
     </div>

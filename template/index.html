@@ -3,7 +3,6 @@
 {% load static %}
 
     {% block content %}
-
         <!-- BEGIN CONTENT -->
     <main class="content">
         <div class="section-welcome">
@@ -68,12 +67,12 @@
                                 <div class="stories">
                                     {% for s in side_recent_post %}
                                      <div class="stories_item">
-                                        <div class="stories_item_img"><a href="article.html"><img data-src="{{s.image.url}}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                                        <div class="stories_item_img"><a href="{% url 'post-details' s.slug %}"><img data-src="{{s.image.url}}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
                                         <div class="stories_infoline infoline">
                                             <div class="infoline_date">{{s.created_at}}</div> <span class="dash"></span>
                                             <div class="infoline_tag">{{s.category}}</div>
                                         </div>
-                                        <div class="stories_item_title"><a href="article.html">{{s.title}}</a></div>
+                                        <div class="stories_item_title"><a href="{% url 'post-details' s.slug %}">{{s.title}}</a></div>
                                     </div>
                                     
                                     {% endfor %}
@@ -89,7 +88,7 @@
             <div class="wrapper">
                 <div class="section_title">
                     <h2>Popular posts</h2>
-                    <a href="blog.html" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    <a href="{% url 'Blog' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
                 </div>
                 <div class="columns columns-invers">
                     <div class="columns_center">
@@ -170,7 +169,7 @@
                         <div class="sidebar_widget">
                             <ul class="catlist">
                                 {% for cat in category  %}
-                                <li><a href="blog.html">{{cat.name}} <span>{{cat|length}}</span></a></li>
+                                <li><a href="blog.html">{{cat.name}} <span>({{cat|length}})</span></a></li>
                                 {% endfor %}
                     
                             </ul>
@@ -249,7 +248,5 @@
     <!-- CONTENT EOF   -->
     {% endblock content %}
           
-
-           
     </body>
 </html>

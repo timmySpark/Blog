@@ -11,9 +11,9 @@
           >
           <div class="header_categ_drop">
             <ul class="catlist">
-              {% for cat in  category %}
+              {% for cat , count in  cat_count %}
               <li>
-                <a href="{% url 'Blog' %}">{{cat.name}} <span>(15)</span></a>
+                <a href="{% url 'Blog' cat.slug %}">{{cat.name}} <span>({{count}})</span></a>
               </li>
               {% endfor %}
               
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="header_mid">
-      <a href="{% url 'Blog' %}" class="header_logo logo" title=""
+      <a href="#" class="header_logo logo" title=""
         ><img
           data-src="{% static 'img/logo.png' %}"
           src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
@@ -39,7 +39,6 @@
         <li><a href="#mostreaded" class="js-local">Most read</a></li>
         <li><a href="#hot" class="js-local">Hot stuff</a></li>
         <li><a href="#top" class="js-local">top of the week</a></li>
-        <li><a href="{% url 'Blog' %}" class="">Must read</a></li>
       </ul>
       <a href="#" class="button-nav"><span></span></a>
     </div>

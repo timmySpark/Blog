@@ -7,24 +7,24 @@
 <main class="content">
   <section class="section-post">
     <div class="wrapper">
-      <div class="pagetitle"><h1>Blog</h1></div>
+      <div class="pagetitle"><h1>{{cat.name}}</h1></div>
       <div class="breadcrumbs">
         <a href="#">Home</a> <span class="dash"></span>
-        <a href="#">{{post.category}}</a> <span class="dash"></span>
-        <span>{{post.title}}</span>
+        <a href="#">{{cat.name}}</a> 
       </div>
       <div class="columns">
         <div class="columns_center">
           <div class="article article_list">
+            {% for p in post  %}
             <div class="article_item">
               <div class="article_item_cover">
-                <a href="article.html"
-                  ><img src="{% static 'img/img9.jpg' %}" alt=""
+                <a href="{% url 'post-details' p.slug %}"
+                  ><img src="{{p.image.url}}" alt=""
                 /></a>
-                <a href="blog.html" class="cats_item">travel</a>
+                <a href="blog.html" class="cats_item">{{p.category}}</a>
               </div>
               <div class="article_infoline infoline">
-                <div class="infoline_date">Jul 06, 2021</div>
+                <div class="infoline_date">{{p.created_at}}</div>
                 <span class="dash"></span>
                 <div class="infoline_author">
                   <div class="ava">
@@ -35,109 +35,26 @@
                       alt=""
                     />
                   </div>
-                  Marie Caphlish
+                  {{p.author}}
                 </div>
               </div>
               <div class="article_txt">
                 <div class="article_title h2">
-                  <a href="article.html"
-                    >a set of the most necessary things on vacation</a
-                  >
+                  <a href="{% url 'post-details' p.slug %}"
+                    >
+{{p.title}}                  
                 </div>
-                <div class="article_desc">
-                  A breakdown or a flat tire can happen to anyone at any time,
-                  and what you have in your car can make the difference between
-                  getting back on the ...
+                <div class="article_desc text-dark">
+                  {{p.content|truncatewords:35}}
                 </div>
                 <div class="article_btn">
-                  <a href="article.html" class="btn">read more</a>
+                  <a href="{% url 'post-details' p.slug %}" class="btn">read more</a>
                 </div>
               </div>
             </div>
-            <div class="article_item">
-              <div class="article_item_cover">
-                <a href="article.html"
-                  ><img
-                    data-src="{% static 'img/img7.jpg' %}"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                    class="js-img"
-                    alt=""
-                /></a>
-                <a href="blog.html" class="cats_item">travel</a>
-              </div>
-              <div class="article_infoline infoline">
-                <div class="infoline_date">Jul 06, 2021</div>
-                <span class="dash"></span>
-                <div class="infoline_author">
-                  <div class="ava">
-                    <img
-                      data-src="{% static 'img/ava.png' %}"
-                      src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                      class="js-img"
-                      alt=""
-                    />
-                  </div>
-                  Marie Caphlish
-                </div>
-              </div>
-              <div class="article_txt">
-                <div class="article_title h2">
-                  <a href="article.html"
-                    >how not to get lost without knowing the language</a
-                  >
-                </div>
-                <div class="article_desc">
-                  A breakdown or a flat tire can happen to anyone at any time,
-                  and what you have in your car can make the difference between
-                  getting back on the ...
-                </div>
-                <div class="article_btn">
-                  <a href="article.html" class="btn">read more</a>
-                </div>
-              </div>
-            </div>
-            <div class="article_item">
-              <div class="article_item_cover">
-                <a href="article.html"
-                  ><img
-                    data-src="{% static 'img/img8.jpg' %}"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                    class="js-img"
-                    alt=""
-                /></a>
-                <a href="blog.html" class="cats_item">travel</a>
-              </div>
-              <div class="article_infoline infoline">
-                <div class="infoline_date">Jul 06, 2021</div>
-                <span class="dash"></span>
-                <div class="infoline_author">
-                  <div class="ava">
-                    <img
-                      data-src="{% static 'img/ava.png' %}"
-                      src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                      class="js-img"
-                      alt=""
-                    />
-                  </div>
-                  Marie Caphlish
-                </div>
-              </div>
-              <div class="article_txt">
-                <div class="article_title h2">
-                  <a href="article.html"
-                    >where to rest for those who do not like noisy places</a
-                  >
-                </div>
-                <div class="article_desc">
-                  A breakdown or a flat tire can happen to anyone at any time,
-                  and what you have in your car can make the difference between
-                  getting back on the ...
-                </div>
-                <div class="article_btn">
-                  <a href="article.html" class="btn">read more</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+            
+        
           </div>
           <div class="pagenavi">
             <span class="current">1</span>

@@ -16,7 +16,7 @@
         <div class="footer_title">Categories</div>
         <ul class="footer_list">
           {% for cat in category %} 
-          <li><a href="{% url 'Blog' %}">{{cat.name}}</a></li>
+          <li><a href="{% url 'Blog' cat.slug %}">{{cat.name}}</a></li>
           {% endfor %}
         </ul>
       </div>

@@ -6,7 +6,7 @@ from app.views import *
 
 urlpatterns = [
     path('', Index,name='index'),
-    path('blog/', BlogHome, name='Blog'),
+    path('blog/category/<str:slug>/', BlogHome, name='Blog'),
     path('blog-details/<str:slug>/', PostDetail, name='post-details'),
 ]
 

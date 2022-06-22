@@ -24,9 +24,18 @@ def Index(request):
     }
     return render(request, template_name,context)
 
-def BlogHome(request):
+def BlogHome(request,slug):
     template_name = 'blog.html'
-    return render(request, template_name)
+    category = get_object_or_404(Category,slug=slug)
+    post = Blog.objects.filter(category__slug=slug)
+
+    context = {
+        'post': post,
+        'cat' : category,
+
+    }
+
+    return render(request, template_name,context)
 
 
 def PostDetail(request,slug):

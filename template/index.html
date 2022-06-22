@@ -88,7 +88,7 @@
             <div class="wrapper">
                 <div class="section_title">
                     <h2>Popular posts</h2>
-                    <a href="{% url 'Blog' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    <a href="#" class="link-view">View all posts <span class="icon-arr"></span></a>
                 </div>
                 <div class="columns columns-invers">
                     <div class="columns_center">
@@ -168,8 +168,8 @@
                         </div>
                         <div class="sidebar_widget">
                             <ul class="catlist">
-                                {% for cat in category  %}
-                                <li><a href="blog.html">{{cat.name}} <span>({{cat|length}})</span></a></li>
+                                {% for category,counts in cat_count %}
+                                <li><a href="{% url 'Blog' category.slug %}">{{category.name}} <span>({{counts}})</span></a></li>
                                 {% endfor %}
                     
                             </ul>

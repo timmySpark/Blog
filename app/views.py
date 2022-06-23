@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render,get_object_or_404
 from app.models import *
 from app.forms import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 # Create your views here.
 
@@ -28,9 +30,18 @@ def BlogHome(request,slug):
     template_name = 'blog.html'
     category = get_object_or_404(Category,slug=slug)
     post = Blog.objects.filter(category__slug=slug)
+    paginator= Paginator(post, 3)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
 
     context = {
-        'post': post,
+        'posts': posts,
         'cat' : category,
 
     }

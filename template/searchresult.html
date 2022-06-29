@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- BEGIN CONTENT -->
+<main class="content">
+    <section class="section-post">
+      <div class="wrapper">
+        <div class="pagetitle"><h1>SEARCH RESULT</h1></div>
+        <div class="breadcrumbs">
+          <a href="#">Home</a> <span class="dash"></span>
+          <a href="#">{{cat.name}}</a> 
+        </div>
+        <div class="columns">
+          <div class="columns_center">
+            <div class="article article_list">
+              {% if posts %}
+                {% for p in posts  %}
+                    <div class="article_item">
+                    <div class="article_item_cover">
+                      <a href="{% url 'post-details' p.slug %}"
+                        ><img src="{{p.image.url}}" alt=""
+                      /></a>
+                      <a href="blog.html" class="cats_item">{{p.category}}</a>
+                    </div>
+                    <div class="article_infoline infoline">
+                      <div class="infoline_date">{{p.created_at}}</div>
+                      <span class="dash"></span>
+                      <div class="infoline_author">
+                        <div class="ava">
+                          <img
+                            data-src="{% static 'img/ava.png' %}"
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                            class="js-img"
+                            alt=""
+                          />
+                        </div>
+                        {{p.author}}
+                      </div>
+                    </div>
+                    <div class="article_txt">
+                      <div class="article_title h2">
+                        <a href="{% url 'post-details' p.slug %}"
+                          >
+                        {{p.title}}                  
+                      </div>
+                      <div class="article_desc text-dark">
+                        {{p.content|truncatewords:35}}
+                      </div>
+                      <div class="article_btn">
+                        <a href="{% url 'post-details' p.slug %}" class="btn">read more</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+              <a href="{% url 'page404' %}"> No Post Available</a>
+              {% endif %}
+            </div>
+
+            <a href="#" class="bann"
+              ><img
+                data-src="{% static 'img/bad1.jpg' %}"
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                class="js-img"
+                alt=""/></a>
+          </div>
+          <aside class="columns_sidebar sidebar">
+            <div class="sidebar_search">
+              <form method ="GET" action="{% url 'search-result' %}">
+                <div class="search"> 
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search..."
+                    name = "search"
+                  />
+                  <button class="btn"><span class="icon-search"></span></button>
+                </div>
+              </form>
+            </div>
+
+            <div class="sidebar_widget">
+              <h3>Recent stories</h3>
+              <div class="stories">
+                {% for s in side_recent_post %}
+                <div class="stories_item">
+                  <div class="stories_item_img">
+                    <a href="{% url 'post-details' s.slug %}"
+                      ><img
+                        data-src="{{s.image.url}}"
+                        src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                        class="js-img"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="stories_item_infoline infoline">
+                    <div class="infoline_date">{{s.created_at}}</div>
+                    <span class="dash"></span>
+                    <div class="infoline_tag">{{s.category}}</div>
+                  </div>
+                  <div class="stories_item_title">
+                    <a href="{% url 'post-details' s.slug %}"
+                      >{{s.title}}</a
+                    >
+                  </div>
+                </div>
+                {% endfor %}
+                
+              
+              </div>
+            </div>
+            <div class="sidebar_widget">
+              <h3>Categories</h3>
+              <div class="cats">
+                {% for cat in category  %}
+                <a href="{% url 'Blog' cat.slug %}" class="cats_item">{{cat.name}}</a>
+                {% endfor %}
+               
+              </div>
+            </div>
+            <a href="#" class="bann"
+              ><img
+                data-src="img/bad2.jpg"
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                class="js-img"
+                alt=""
+            /></a>
+            <div class="sidebar_widget">
+              <h3>Follow us</h3>
+              <div class="soc">
+                <div class="soc_item">
+                  <a href="#" target="_blank">
+                    <span class="soc_item_icon"
+                      ><span class="icon-fb"></span
+                    ></span>
+                    <span class="soc_item_txt">2,1 k+</span>
+                  </a>
+                </div>
+                <div class="soc_item">
+                  <a href="#" target="_blank">
+                    <span class="soc_item_icon"
+                      ><span class="icon-tw"></span
+                    ></span>
+                    <span class="soc_item_txt">3,6 k+</span>
+                  </a>
+                </div>
+                <div class="soc_item">
+                  <a href="#" target="_blank">
+                    <span class="soc_item_icon"
+                      ><span class="icon-youtube"></span
+                    ></span>
+                    <span class="soc_item_txt">2,8 k+</span>
+                  </a>
+                </div>
+                <div class="soc_item">
+                  <a href="#" target="_blank">
+                    <span class="soc_item_icon"
+                      ><span class="icon-instagram"></span
+                    ></span>
+                    <span class="soc_item_txt">6,3 k+</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar_widget">
+              <h3>Popular posts</h3>
+              <div class="popular">
+                {% for p in side_popular_post  %}
+                <div class="popular_item">
+                  <div class="popular_item_img">
+                    <a href="{% url 'post-details' p.slug %}"
+                      ><img
+                        data-src="{{p.image.url}}"
+                        src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                        class="js-img"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="popular_item_cont">
+                    <div class="popular_item_title">
+                      <a href="{% url 'post-details' p.slug %}"
+                        >{{p.title}}</a
+                      >
+                    </div>
+                    <div class="popular_item_infoline infoline">
+                      <div class="infoline_date">{{p.created_at}}</div>
+                      <span class="dash"></span>
+                      <div class="infoline_tag">
+                        <span class="icon-comm"></span>5
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+    
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- CONTENT EOF   -->
+
+{% endblock content %}

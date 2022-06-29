@@ -167,11 +167,11 @@
                             <h2>Categories</h2>
                         </div>
                         <div class="sidebar_widget">
+                            
                             <ul class="catlist">
-                                {% for category,counts in cat_count %}
-                                <li><a href="{% url 'Blog' category.slug %}">{{category.name}} <span>({{counts}})</span></a></li>
+                                {% for category, count in cat_count  %}
+                                <a href="{% url 'Blog' category.slug %}" class="cats_item">{{category.name}}</a>
                                 {% endfor %}
-                    
                             </ul>
                         </div>
                         <a href="#" class="bann"><img data-src="{% static 'img/bad2.jpg' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>

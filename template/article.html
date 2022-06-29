@@ -106,12 +106,14 @@
         </div>
         <aside class="columns_sidebar sidebar">
           <div class="sidebar_search">
-            <form>
-              <div class="search">
+            <form method ="GET" action = "{% url 'search-result' %}">
+              <div class="search"> 
+                {% csrf_token %}
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Search..."
+                  name = "search"
                 />
                 <button class="btn"><span class="icon-search"></span></button>
               </div>
@@ -120,7 +122,7 @@
           <div class="sidebar_widget">
             <h3>Recent stories</h3>
             <div class="stories">
-              {% for s in side_recent_post  %}
+              {% for s in side_recent_post %}
               <div class="stories_item">
                 <div class="stories_item_img">
                   <a href="{% url 'post-details' s.slug %}"
@@ -143,14 +145,17 @@
                 </div>
               </div>
               {% endfor %}
+              
+            
             </div>
           </div>
           <div class="sidebar_widget">
             <h3>Categories</h3>
             <div class="cats">
               {% for cat in category  %}
-              <a href="blog.html" class="cats_item">{{cat.name}}</a>
+              <a href="{% url 'Blog' cat.slug %}" class="cats_item">{{cat.name}}</a>
               {% endfor %}
+             
             </div>
           </div>
           <a href="#" class="bann"
@@ -226,7 +231,6 @@
                   </div>
                 </div>
               </div>
-            
               {% endfor %}
             </div>
           </div>

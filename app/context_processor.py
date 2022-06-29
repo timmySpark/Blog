@@ -1,4 +1,6 @@
 from .models import *
+from django.db.models import Q
+
 
 def blog_renderer(request):
     category = Category.objects.all()
@@ -18,3 +20,6 @@ def blog_renderer(request):
         'side_popular_post': side_popular_post,
         'counts':counts,
     }
+
+
+

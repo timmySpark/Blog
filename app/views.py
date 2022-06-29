@@ -90,8 +90,22 @@ def PostSearch(request):
     return render(request, template_name,context)
 
 def MorePosts(request):
-    template_name = "blog.html"
-    context = {}
+    template_name = "moreposts.html"
+    moreposts = Blog.objects.all()
+    page = request.GET.get('page',1)
+    paginator= Paginator(moreposts,3)
+
+    try:
+        morepost = paginator.page(page)
+    except PageNotAnInteger:
+        morepost = paginator.page(1)
+    except EmptyPage:
+        morepost = paginator.page(paginator.num_pages)
+
+    context = {
+        'morepost': morepost,
+        'moreposts': moreposts,
+    }
     return render(request, template_name,context)    
 
 

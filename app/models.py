@@ -34,7 +34,7 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='BlogImages/')
     author = models.CharField(max_length=50)
     category= models.ForeignKey(Category, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    slug = models.SlugField(max_length=500, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

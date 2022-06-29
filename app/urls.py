@@ -5,11 +5,11 @@ from app.views import *
 
 
 urlpatterns = [
-    path('', Index,name='index'),
+    path('', Home,name='index'),
     path('blog/category/<str:slug>', BlogHome, name='Blog'),
+    path('blog/moreposts/', MorePosts, name='more-posts'),
     path('blog-details/<str:slug>', PostDetail, name='post-details'),
     path('blog/search', PostSearch, name='search-result'),
-    path('blog/404',Page_404, name='page404'),
 
 ]
 

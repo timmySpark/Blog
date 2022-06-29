@@ -6,7 +6,7 @@ from django.db.models import Q
 
 # Create your views here.
 
-def Index(request):
+def Home(request):
     template_name = 'index.html'
     featured_post = Blog.objects.all()[:3]
     recent_post = Blog.objects.all().order_by('-created_at')[4:7]
@@ -89,7 +89,13 @@ def PostSearch(request):
     }    
     return render(request, template_name,context)
 
-def Page_404(request):
+def MorePosts(request):
+    template_name = "blog.html"
+    context = {}
+    return render(request, template_name,context)    
+
+
+def Page_404(request,exception):
     template_name = 'page404.html'
     context = {
         

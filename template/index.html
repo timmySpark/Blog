@@ -88,7 +88,7 @@
             <div class="wrapper">
                 <div class="section_title">
                     <h2>Popular posts</h2>
-                    <a href="#" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    <a href="{% url 'more-posts' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
                 </div>
                 <div class="columns columns-invers">
                     <div class="columns_center">
@@ -136,7 +136,7 @@
                     <div class="columns_center">
                         <div class="section_title">
                             <h2>Most read posts</h2>
-                            <a href="blog.html" class="link-view">View all posts <span class="icon-arr"></span></a>
+                            <a href="{% url 'more-posts' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
                         </div>
                         <div class="readed">
                             {% for m in most_read_post  %}                          
@@ -219,7 +219,7 @@
             <div class="wrapper">
                 <div class="section_title">
                     <h2>top of the week</h2>
-                    <a href="blog.html" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    <a href="{% url 'more-posts' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
                 </div>
                 <div class="topof">
                     {% for t in top_of_the_week  %}

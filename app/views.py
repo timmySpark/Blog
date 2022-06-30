@@ -112,3 +112,20 @@ def Page_404(request,exception):
     template_name = 'page404.html'
     context = {}
     return render(request, template_name,context)
+
+
+def Subscribers(request):
+    form = SubscribersForm()
+    
+    if request.morepost == POST :
+        form = SubscribersForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        form : "form",
+    }
+
+    return render(request,context)
+    

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load crispy_forms_tags %} 
+{% load widget_tweaks %} 
 
     {% block content %}
         <!-- BEGIN CONTENT -->
@@ -181,10 +183,12 @@
         </section>
         <section class="section-subsc">
             <div class="wrapper">
-                <form>
+                <form method="POST"> {% csrf_token %}
                     <div class="subsc">
                         <h3>Stay up to date!<br/>Sunscribe!</h3>
-                        <input type="text" class="form-control" placeholder="Your email"/>
+                        {% for f in form %}
+                        {{f.email|add_class:"form-control"|attr:"placeholder:Enter your Email"|attr:"type:text"}}
+                        {% endfor %}
                         <button class="btn">subscribe</button>
                     </div>
                 </form>

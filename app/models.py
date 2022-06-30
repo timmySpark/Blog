@@ -76,5 +76,21 @@ class Comment(models.Model):
         return reverse("Comment_detail", kwargs={"pk": self.pk})
         
 
+class Subscribers(models.Model):
+
+    email = models.EmailField(max_length=254)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = ("Subscriber")
+        verbose_name_plural = ("Subscribers")
+
+    def __str__(self):
+        return self.email
+
+    def get_absolute_url(self):
+        return reverse("Subscribe_detail", kwargs={"pk": self.pk})
+
+
 
 

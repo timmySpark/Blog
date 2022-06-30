@@ -15,3 +15,4 @@ class CategoryAdmin(ImportExportMixin,admin.ModelAdmin):
 admin.site.register(Category,CategoryAdmin)
 
 admin.site.register(Comment)
+admin.site.register(Subscribers)

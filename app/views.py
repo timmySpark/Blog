@@ -104,14 +104,11 @@ def MorePosts(request):
 
     context = {
         'morepost': morepost,
-        'moreposts': moreposts,
     }
     return render(request, template_name,context)    
 
 
 def Page_404(request,exception):
     template_name = 'page404.html'
-    context = {
-        
-    }
+    context = {}
     return render(request, template_name,context)
